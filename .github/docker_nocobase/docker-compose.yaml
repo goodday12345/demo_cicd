@@ -1,0 +1,22 @@
+version: '3'
+services:
+  nocobase:
+    image: nocobase/nocobase:main
+    ports:
+      - "13000:80"
+    environment:
+      - DB_DIALECT=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=nocobase
+      - DB_USER=nocobase
+      - DB_PASSWORD=nocobase
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=nocobase
+      - POSTGRES_USER=nocobase
+      - POSTGRES_PASSWORD=nocobase
